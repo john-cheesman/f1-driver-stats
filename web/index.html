@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ES6 Boilerplate</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+
+    <body data-ng-app="f1-driver-stats">
+        <header class="primary-header">
+            <h1>F1 Driver Stats</h1>
+        </header>
+
+        <main class="content">
+            <section class="driver-search" data-ng-controller="driverSearchController as search">
+                <select data-ng-model="search.driver" data-ng-change="search.selectDriver(search.driver)" data-ng-options="(driver.givenName + ' ' + driver.familyName) for driver in search.driverList">
+                    <option value="" selected>Select driver</option>
+                </select>
+
+                {{search.driver.givenName}} {{search.driver.familyName}}
+            </section>
+
+            <section class="driver-summary" data-ng-controller="driverSummaryController as summary">
+                <h1>{{summary.driver.fullName}}</h1>
+
+                <dl>
+                    <dt>Date of Birth</dt>
+                    <dd><time datetime="{{summary.driver.dob}}">{{summary.driver.dob | date : config.dateFormat}}</time></dd>
+
+                    <dt>Nationality</dt>
+                    <dd>{{summary.driver.nationality}}</dd>
+                </dl>
+            </section>
+        </main>
+
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>
